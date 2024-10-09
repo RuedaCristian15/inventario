@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        // Verificar si la tabla 'roles' no existe antes de crearla
+        if (!Schema::hasTable('roles')) {
+            Schema::create('roles', function (Blueprint $table) {
+                $table->bigIncrements('id');    // ID de la tabla
+                $table->string('name');         // Nombre del rol
+                $table->string('guard_name');   // Guard name, si es necesario
+                $table->timestamps();           // Columnas created_at y updated_at
+            });
+        }
     }
 
     /**
