@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('preciocompra');
             $table->integer('precioventa');
             $table->foreignId('id_proveedor')->constrained('proveedors')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
