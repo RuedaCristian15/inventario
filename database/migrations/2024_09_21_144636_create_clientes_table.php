@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string(column: 'cedula')->unique();
             $table->string('gmail');
             $table->string(column: 'telefono')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -61,17 +61,18 @@ class ProveedorResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                
+                Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ForceDeleteAction::make(), // Eliminar permanentemente
+                Tables\Actions\RestoreAction::make(), // Restaurar registros eliminados
             ])
             ->bulkActions([
                 /* Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                ]), */
-            ]);
+                ]), */]);
     }
 
     public static function getRelations(): array

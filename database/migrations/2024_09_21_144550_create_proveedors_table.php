@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nit')->unique();
             $table->string('correo');
             $table->string('telefono')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

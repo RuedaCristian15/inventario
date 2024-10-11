@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Venta extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     
     protected $fillable = ['stock', 'id_producto', 'id_cliente'];
 
