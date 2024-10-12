@@ -9,6 +9,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles; // Asegúrate de incluir esto
+use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
+
 
 class User extends Authenticatable
 {
@@ -17,7 +19,8 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    use HasRoles; // Añade este trait
+    use HasRoles;
+    use HasPanelShield; // Añade este trait
 
     /**
      * The attributes that are mass assignable.

@@ -2,19 +2,20 @@
 
 namespace App\Policies;
 
-use App\Models\Proveedor;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
+use App\Models\Proveedor;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProveedorPolicy
 {
+    use HandlesAuthorization;
+
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        //
-        return $user->hasRole( ['Admin','AdminCompra','GestorCompra']);
+        return $user->can('view_any_proveedor');
     }
 
     /**
@@ -22,8 +23,7 @@ class ProveedorPolicy
      */
     public function view(User $user, Proveedor $proveedor): bool
     {
-        //
-        return $user->hasRole( ['Admin','AdminCompra','GestorCompra']);
+        return $user->can('view_proveedor');
     }
 
     /**
@@ -31,8 +31,7 @@ class ProveedorPolicy
      */
     public function create(User $user): bool
     {
-        //
-        return $user->hasRole( ['Admin','AdminCompra','GestorCompra']);
+        return $user->can('create_proveedor');
     }
 
     /**
@@ -40,8 +39,7 @@ class ProveedorPolicy
      */
     public function update(User $user, Proveedor $proveedor): bool
     {
-        //
-        return $user->hasRole( ['Admin','AdminCompra','GestorCompra']);
+        return $user->can('update_proveedor');
     }
 
     /**
@@ -49,25 +47,62 @@ class ProveedorPolicy
      */
     public function delete(User $user, Proveedor $proveedor): bool
     {
-        //
-        return $user->hasRole( ['Admin','AdminCompra']);
+        return $user->can('delete_proveedor');
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can bulk delete.
      */
-    public function restore(User $user, Proveedor $proveedor): bool
+    public function deleteAny(User $user): bool
     {
-        //
-        return $user->hasRole( ['Admin','AdminCompra','GestorCompra']);
+        return $user->can('delete_any_proveedor');
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can permanently delete.
      */
     public function forceDelete(User $user, Proveedor $proveedor): bool
     {
-        //
-        return $user->hasRole( ['Admin','AdminCompra']);
+        return $user->can('force_delete_proveedor');
+    }
+
+    /**
+     * Determine whether the user can permanently bulk delete.
+     */
+    public function forceDeleteAny(User $user): bool
+    {
+        return $user->can('force_delete_any_proveedor');
+    }
+
+    /**
+     * Determine whether the user can restore.
+     */
+    public function restore(User $user, Proveedor $proveedor): bool
+    {
+        return $user->can('restore_proveedor');
+    }
+
+    /**
+     * Determine whether the user can bulk restore.
+     */
+    public function restoreAny(User $user): bool
+    {
+        return $user->can('restore_any_proveedor');
+    }
+
+    /**
+     * Determine whether the user can replicate.
+     */
+    public function replicate(User $user, Proveedor $proveedor): bool
+    {
+        return $user->can('replicate_proveedor');
+    }
+
+    /**
+     * Determine whether the user can reorder.
+     */
+    public function reorder(User $user): bool
+    {
+        return $user->can('reorder_proveedor');
     }
 }
